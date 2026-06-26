@@ -1,0 +1,39 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.4",
+            "eventSource": "aws:s3",
+            "awsRegion": "ap-south-1",
+            "eventTime": "2026-06-20T06:19:19.284Z",
+            "eventName": "ObjectCreated:Copy",
+            "userIdentity": {
+                "principalId": "AWS:AIDAVIFB5WMUCHUBDXKIJ"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "106.215.164.73"
+            },
+            "responseElements": {
+                "x-amz-request-id": "9E89FJAZAXJDXE3M",
+                "x-amz-id-2": "/WBj7Cp59icDKmlOUsUPhyl6Gpvc1i5SzVG7WcxFofINvgs+RZTHfCgTEWR19LRFcH4+vqOkU1Ca9zlx+xK/ML9ouKKsBMm6"
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "new_file_arrival",
+                "bucket": {
+                    "name": "edp-source-26",
+                    "ownerIdentity": {
+                        "principalId": "A210O3YQ6BVN0T"
+                    },
+                    "arn": "arn:aws:s3:::edp-source-26"
+                },
+                "object": {
+                    "key": "source_files/orders/part-00000_orders_1.csv",
+                    "size": 4582,
+                    "eTag": "7149c17a7178a4b976f87f7cc6f49097",
+                    "sequencer": "006A3630E73CDA2596",
+                    "hasObjectAnnotation": false
+                }
+            }
+        }
+    ]
+}
