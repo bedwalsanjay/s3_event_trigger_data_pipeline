@@ -1,3 +1,4 @@
+import os
 import re
 import boto3
 import logging
@@ -5,9 +6,8 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-GLUE_JOB_NAME = "job1"
+GLUE_JOB_NAME = os.environ["GLUE_JOB_NAME"]
 EXPECTED_PREFIX = "source_files/orders/"
-# Matches: part-NNNNN_orders_N.csv  (N = one or more digits)
 FILE_PATTERN = re.compile(r"^part-\d{5}_orders_\d+\.csv$")
 
 glue = boto3.client("glue")
@@ -20,16 +20,14 @@ def lambda_handler(event, context):
 
         logger.info("Received s3://%s/%s", bucket, key)
 
-        # Validate path prefix
         if not key.startswith(EXPECTED_PREFIX):
             logger.warning("Unexpected prefix, skipping: %s", key)
             continue
 
         filename = key.split("/")[-1]
 
-        # Validate file name convention
         if not FILE_PATTERN.match(filename):
-            logger.error("Invalid file name: %s — does not match pattern part-NNNNN_orders_N.csv", filename)
+            logger.error("Invalid file name: %s", filename)
             continue
 
         logger.info("Valid file: %s — triggering Glue job '%s'", filename, GLUE_JOB_NAME)
